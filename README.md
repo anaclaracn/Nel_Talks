@@ -1,4 +1,4 @@
-# NEL Forum AI
+# NEL Talks
 
 ## Visão Geral
 O **NEL Forum AI** é uma plataforma distribuída desenvolvida pelo **Núcleo NEL**.  
