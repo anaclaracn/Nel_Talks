@@ -1,7 +1,7 @@
 # NEL Talks
 
 ## Visão Geral
-O **NEL Talks** é uma plataforma distribuída desenvolvida para **Núcleo NEL**.  
+O **NEL Talks** é uma plataforma distribuída desenvolvida para o **Núcleo NEL**.  
 O sistema integra duas APIs de Inteligência Artificial com o objetivo de aprimorar a interação entre usuários e conteúdos em um fórum online.
 
 A aplicação foi projetada para classificar automaticamente comentários e fornecer respostas baseadas em uma base de documentação, mantendo o foco em confiabilidade e segurança.
