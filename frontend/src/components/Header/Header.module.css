@@ -1,0 +1,93 @@
+/* src/components/Header/Header.module.css */
+
+/* 1. Estilo Principal do Cabeçalho */
+.header {
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #E0E0E0;
+    padding: 20px 50px; 
+    /* Mudança: Tira o 'space-between' para não forçar a navegação para a extrema direita */
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    height: 70px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* 2. Estilo do Logo */
+.logoContainer {
+    /* Garante que o container do logo não atrapalhe o alinhamento */
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    height: 70px; /* Ajuste a altura conforme a resolução do seu logo */
+    /* Remove a margem extra, se houver, ao redor da imagem */
+    display: block;
+}
+
+/* 3. Estilo da Navegação (UL e LI) */
+.nav {
+    /* Mudar: Use margem automática na esquerda para empurrar o bloco de navegação para longe do logo */
+    margin-left: 80px; /* Margem inicial maior para o menu não começar grudado no logo */
+    /* Se você quiser o menu bem centralizado, pode usar: 'margin: 0 auto;' e ajustar o 'flex-grow' */
+}
+
+.nav ul {
+    list-style: none; /* Remove os pontos da lista */
+    display: flex;
+    padding: 0;
+    margin: 0;
+}
+
+.nav li {
+    margin-left: 50px; /* Espaçamento entre os links */
+}
+
+.nav li {
+    margin-right: 50px; /* Espaçamento entre os links */
+}
+
+/* 4. Estilo dos Links */
+.navLink {
+    text-decoration: none; /* Remove o sublinhado padrão */
+    color: #002D56; /* Cor do texto: Azul Marinho (Escuro) */
+    font-size: 1.1rem; /* Tamanho da fonte */
+    font-weight: 500; /* Peso da fonte (semi-bold) */
+    padding: 8px 0; /* Espaçamento vertical para a linha sublinhada */
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+/* 5. Efeito Sublinhado (O que o professor destacou no "Início") */
+
+/* Cria a linha sublinhada base */
+.navLink::after {
+    content: '';
+    position: absolute;
+    bottom: -5px; /* Posição abaixo do texto */
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: transparent; /* Inicialmente transparente */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    transform: scaleX(0); /* Inicialmente com largura zero */
+}
+
+/* Efeito Hover: Aparece e se expande a linha */
+.navLink:hover::after {
+    background-color: #06BDFF; /* Cor de destaque: Azul Claro */
+    transform: scaleX(1); /* Expande para 100% */
+}
+
+/* Efeito Ativo/Página Atual (Você precisa aplicar uma classe a mais para isso) */
+.navLink.active {
+    color: #002D56; /* Mantém a cor do texto principal */
+    font-weight: 600; /* Deixa um pouco mais em negrito */
+}
+
+/* Garante que a linha apareça na página atual */
+.navLink.active::after {
+    background-color: #06BDFF; /* A cor do sublinhado de destaque */
+    transform: scaleX(1); /* Exibição completa */
+}
