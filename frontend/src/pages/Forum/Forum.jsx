@@ -136,7 +136,7 @@ function Forum() {
           <h1 className={styles.panelTitle}>Painel de Interações do NEL</h1>
           <p className={styles.panelSubtitle}>Espaço para observar os feedbacks, sugestões, reclamações e dúvidas dos membros do núcleo</p>
         </div>
-        <Link to="/postar-forum" className={styles.postButton}>
+        <Link to="/chat" className={styles.postButton}>
           <img src={chatIcon} alt="Ícone de Chat" className={styles.postButtonIcon} />
           Postar no Fórum
         </Link>

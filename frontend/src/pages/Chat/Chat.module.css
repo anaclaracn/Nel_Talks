@@ -1,0 +1,266 @@
+/* src/pages/ChatPage/ChatPage.module.css */
+
+.chatPage {
+    background-color: #f7f9fc;
+    min-height: calc(100vh - 70px);
+}
+
+/* --- 1. Seção Superior (Header com Foguete) --- */
+.chatHeader {
+    background-color: #002D56; /* Fundo azul marinho escuro */
+    color: #fff;
+    padding: 90px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    overflow: hidden; /* Para garantir que o foguete de fundo fique dentro */
+}
+
+.headerContent {
+    max-width: 65%;
+    z-index: 10;
+}
+
+.headerTitle {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    line-height: 1.2;
+}
+
+.headerSubtitle {
+    font-size: 1.1rem;
+}
+
+/* Estilo do Foguete (Imagem de Fundo ou SVG) */
+.chatHeader::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 300px; /* Tamanho do foguete */
+    height: 100%;
+    background-image: url('/src/assets/images/rocket.png'); /* Crie e importe uma imagem de foguete aqui */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center right 40px;
+    opacity: 0.8;
+    z-index: 5;
+}
+
+.chatHeader::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 350px;
+    height: 100%;
+    
+    /* CORREÇÃO AQUI: Ajusta o centro do gradiente (X) para que o brilho fique atrás do foguete. */
+    /* De: circle at 75% 50%  -> Para: circle at 50% 50% (para centralizar na área do pseudoelemento) */
+    background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.637) 0%, transparent 70%);
+    
+    /* Opção alternativa se 50% for muito à esquerda: */
+    /* background: radial-gradient(circle at 60% 50%, rgba(255, 255, 255, 0.5) 0%, transparent 70%); */
+    
+    filter: blur(25px); 
+    z-index: 4; 
+}
+
+/* --- 2. Container Principal do Chat --- */
+.chatContainer {
+    background-color: #fff;
+    max-width: 900px;
+    width: 90%;
+    margin: 80px auto 40px; 
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    height: 70vh; 
+    min-height: 500px;
+}
+
+.messagesWindow {
+    flex-grow: 1;
+    padding: 30px; /* Padding interno para as mensagens */
+    overflow-y: auto;
+    border-bottom: 1px solid #eee;
+    display: flex; /* Adiciona flex para organizar as bolhas */
+    flex-direction: column; /* Organiza as bolhas uma abaixo da outra */
+    gap: 20px; /* Espaçamento entre as bolhas */
+}
+
+/* --- Estilo dos Balões de Mensagem --- */
+.messageBubble {
+    display: flex;
+    align-items: flex-start; /* Alinha o avatar e o texto ao topo */
+    max-width: 85%; /* Limita a largura do balão de mensagem */
+    /* Removido margin-bottom aqui, pois 'gap' em .messagesWindow já cuida disso */
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 15px;
+    flex-shrink: 0; /* Impede o avatar de encolher */
+}
+
+.messageText {
+    padding: 12px 18px;
+    border-radius: 20px;
+    max-width: 80%;
+    font-size: 1rem;
+    line-height: 1.5;
+    word-wrap: break-word; /* Garante que palavras longas quebrem linha */
+    text-align: left;
+}
+
+/* Estilo para Mensagens do Agente (Esquerda) */
+.agente {
+    align-self: flex-start; /* Alinha a bolha inteira à esquerda */
+    /* CORREÇÃO: Mover o avatar para a esquerda */
+    margin-right: auto; /* Empurra a bolha para a esquerda */
+}
+
+.agente .avatar {
+    margin-right: 15px; /* Espaçamento após o avatar */
+    margin-left: 0;
+}
+
+.agente .messageText {
+    background-color: #f0f0f0; 
+    color: #333;
+    border-top-left-radius: 0; 
+}
+
+/* Estilo para Mensagens do Usuário (Direita) */
+.user {
+    align-self: flex-end; /* Alinha a bolha inteira à direita */
+    /* CORREÇÃO: Mover o avatar para a direita e inverter a ordem */
+    flex-direction: row-reverse; /* Inverte a ordem do avatar e texto */
+    margin-left: auto; /* Empurra a bolha para a direita */
+}
+
+.user .avatar {
+    margin-right: 0; /* Remove margem direita */
+    margin-left: 15px; /* Adiciona margem à esquerda do avatar */
+}
+
+.user .messageText {
+    background-color: #2F80ED; 
+    color: #fff;
+    border-top-right-radius: 0; 
+}
+
+/* --- 3. Área de Input --- */
+.inputArea {
+    display: flex;
+    padding: 15px 30px;
+    align-items: center;
+}
+
+.inputField {
+    flex-grow: 1;
+    padding: 12px 18px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    font-size: 1rem;
+    margin-right: 15px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.inputField:focus {
+    border-color: #2F80ED;
+}
+
+.sendButton {
+    background-color: #2F80ED;
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.sendButton:hover {
+    background-color: #1a6ac9;
+}
+
+.sendIcon {
+    width: 20px;
+    height: 20px;
+    fill: #fff;
+    transform: translateX(1px); /* Ajuste visual para a seta */
+}
+
+/* Estilo para o estado de "digitando" (opcional) */
+.typing .messageText {
+    font-style: italic;
+    color: #666;
+}
+
+/* --- Responsividade (Ajustes para mobile se necessário) --- */
+@media (max-width: 768px) {
+    .chatHeader {
+        padding: 40px 20px;
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+        gap: 20px;
+    }
+    .chatHeader::after {
+        background-position: center bottom -20px; /* Ajusta a posição do foguete */
+        background-size: 200px;
+    }
+    .headerContent {
+        max-width: 100%;
+    }
+    .headerTitle {
+        font-size: 2rem;
+    }
+    .headerSubtitle {
+        font-size: 1rem;
+    }
+
+    .chatContainer {
+        width: 95%;
+        margin: -50px auto 20px;
+        height: 80vh; /* Pode aumentar a altura do chat em mobile */
+        min-height: 400px;
+    }
+
+    .messagesWindow {
+        padding: 20px;
+    }
+
+    .messageBubble {
+        max-width: 95%; /* Bolhas mais largas em mobile */
+    }
+
+    .inputArea {
+        padding: 10px 20px;
+    }
+
+    .inputField {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+
+    .sendButton {
+        width: 40px;
+        height: 40px;
+    }
+    .sendIcon {
+        width: 18px;
+        height: 18px;
+    }
+}
