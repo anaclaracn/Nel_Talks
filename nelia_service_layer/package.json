@@ -1,0 +1,19 @@
+{
+  "name": "nelia-service-layer",
+  "version": "1.0.0",
+  "description": "Orquestrador central para o chat, classificando mensagens e chamando agentes de IA.",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "node src/main.js",
+    "dev": "nodemon src/main.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "axios": "^1.6.8",
+    "dotenv": "^16.4.5",
+    "pg": "^8.11.3"  
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}
