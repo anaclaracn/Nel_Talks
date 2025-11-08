@@ -16,19 +16,19 @@ function Forum() {
   // Dados de exemplo para a tabela
   // Adicionei um campo 'status' para demonstrar o filtro de status
   const allMessages = useMemo(() => ([
-    { id: '001', name: 'Anne Thainara', classification: 'Ideia', destination: 'Diretoria', message: 'Sugestão para otimizar o uso do laboratório de laticínios, implementando novas técnicas de análise e controle de qualidade.', status: 'Resolvido', isAnonymous: false },
-    { id: '002', name: 'Anne Thainara', classification: 'Reclamação', destination: 'Time', message: 'Reclamação sobre a falta de acesso à impressora do laboratório, o que tem atrasado a documentação de experimentos importantes.', status: 'Em Análise', isAnonymous: false },
-    { id: '003', name: 'Pedro Silva', classification: 'Dúvida', destination: 'Time', message: 'Dúvida sobre o próximo evento do NEL, gostaria de saber a data, horário e como posso participar ativamente.', status: 'Pendente', isAnonymous: false },
-    { id: '004', name: 'Anônimo', classification: 'Feedback', destination: 'Time', message: 'Feedback positivo sobre a nova organização da biblioteca do núcleo, muito mais fácil encontrar os artigos.', status: 'Resolvido', isAnonymous: true },
-    { id: '005', name: 'Anônimo', classification: 'Feedback', destination: 'Diretoria', message: 'Sugestão de melhoria para o sistema de agendamento de equipamentos, está um pouco confuso para novos membros.', status: 'Pendente', isAnonymous: true },
-    { id: '006', name: 'Anônimo', classification: 'Ideia', destination: 'Diretoria', message: 'Proposta para novo projeto de pesquisa sobre o uso de probióticos em produtos lácteos fermentados.', status: 'Em Análise', isAnonymous: true },
-    { id: '007', name: 'Giovana Maria', classification: 'Dúvida', destination: 'Time', message: 'Qual o prazo para submissão de artigos para o congresso anual do NEL? Preciso me organizar.', status: 'Resolvido', isAnonymous: false },
-    { id: '008', name: 'Isabela Coimba', classification: 'Reclamação', destination: 'Time', message: 'Problemas recorrentes com a conexão de internet no laboratório de processamento de leite, dificultando as análises.', status: 'Pendente', isAnonymous: false },
-    { id: '009', name: 'Anônimo', classification: 'Reclamação', destination: 'Time', message: 'Equipamento X está com defeito há semanas e ninguém providencia o conserto, prejudicando as pesquisas.', status: 'Em Análise', isAnonymous: true },
-    { id: '010', name: 'Carlos Augusto', classification: 'Ideia', destination: 'Diretoria', message: 'Ideia para um workshop de produção de queijos artesanais para a comunidade acadêmica.', status: 'Pendente', isAnonymous: false },
-    { id: '011', name: 'Maria Eduarda', classification: 'Dúvida', destination: 'Time', message: 'Gostaria de saber mais sobre as oportunidades de estágio no NEL para alunos de graduação.', status: 'Resolvido', isAnonymous: false },
-    { id: '012', name: 'Anônimo', classification: 'Feedback', destination: 'Diretoria', message: 'Feedback sobre a comunicação interna do núcleo, poderia ser mais frequente e transparente.', status: 'Pendente', isAnonymous: true },
-    { id: '013', name: 'Thiago Oliveira', classification: 'Reclamação', destination: 'Time', message: 'A temperatura do refrigerador Y não está estável, comprometendo amostras.', status: 'Em Análise', isAnonymous: false },
+    { id: '001', name: 'Anne Thainara', classification: 'Ideia', destination: 'Diretoria', message: 'Sugestão para otimizar o uso do laboratório de laticínios, implementando novas técnicas de análise e controle de qualidade.', status: 'Visto', isAnonymous: false },
+    { id: '002', name: 'Anne Thainara', classification: 'Reclamação', destination: 'Time', message: 'Reclamação sobre a falta de acesso à impressora do laboratório, o que tem atrasado a documentação de experimentos importantes.', status: 'Não Visto', isAnonymous: false },
+    { id: '003', name: 'Pedro Silva', classification: 'Dúvida', destination: 'Time', message: 'Dúvida sobre o próximo evento do NEL, gostaria de saber a data, horário e como posso participar ativamente.', status: 'Não Visto', isAnonymous: false },
+    { id: '004', name: 'Anônimo', classification: 'Feedback', destination: 'Time', message: 'Feedback positivo sobre a nova organização da biblioteca do núcleo, muito mais fácil encontrar os artigos.', status: 'Visto', isAnonymous: true },
+    { id: '005', name: 'Anônimo', classification: 'Feedback', destination: 'Diretoria', message: 'Sugestão de melhoria para o sistema de agendamento de equipamentos, está um pouco confuso para novos membros.', status: 'Não Visto', isAnonymous: true },
+    { id: '006', name: 'Anônimo', classification: 'Ideia', destination: 'Diretoria', message: 'Proposta para novo projeto de pesquisa sobre o uso de probióticos em produtos lácteos fermentados.', status: 'Não Visto', isAnonymous: true },
+    { id: '007', name: 'Giovana Maria', classification: 'Dúvida', destination: 'Time', message: 'Qual o prazo para submissão de artigos para o congresso anual do NEL? Preciso me organizar.', status: 'Visto', isAnonymous: false },
+    { id: '008', name: 'Isabela Coimba', classification: 'Reclamação', destination: 'Time', message: 'Problemas recorrentes com a conexão de internet no laboratório de processamento de leite, dificultando as análises.', status: 'Não Visto', isAnonymous: false },
+    { id: '009', name: 'Anônimo', classification: 'Reclamação', destination: 'Time', message: 'Equipamento X está com defeito há semanas e ninguém providencia o conserto, prejudicando as pesquisas.', status: 'Não Visto', isAnonymous: true },
+    { id: '010', name: 'Carlos Augusto', classification: 'Ideia', destination: 'Diretoria', message: 'Ideia para um workshop de produção de queijos artesanais para a comunidade acadêmica.', status: 'Não Visto', isAnonymous: false },
+    { id: '011', name: 'Maria Eduarda', classification: 'Dúvida', destination: 'Time', message: 'Gostaria de saber mais sobre as oportunidades de estágio no NEL para alunos de graduação.', status: 'Visto', isAnonymous: false },
+    { id: '012', name: 'Anônimo', classification: 'Feedback', destination: 'Diretoria', message: 'Feedback sobre a comunicação interna do núcleo, poderia ser mais frequente e transparente.', status: 'Não Visto', isAnonymous: true },
+    { id: '013', name: 'Thiago Oliveira', classification: 'Reclamação', destination: 'Time', message: 'A temperatura do refrigerador Y não está estável, comprometendo amostras.', status: 'Não Visto', isAnonymous: false },
   ]), []);
 
   // Lógica de filtragem
@@ -79,9 +79,8 @@ function Forum() {
   // Renderizar o estilo do badge de Status
   const renderStatusBadge = (status) => {
     switch (status) {
-      case 'Pendente': return <span className={`${styles.badge} ${styles.badgePending}`}>Pendente</span>;
-      case 'Em Análise': return <span className={`${styles.badge} ${styles.badgeInProgress}`}>Em Análise</span>;
-      case 'Resolvido': return <span className={`${styles.badge} ${styles.badgeResolved}`}>Resolvido</span>;
+      case 'Não Visto': return <span className={`${styles.badge} ${styles.badgePending}`}>Não Visto</span>;
+      case 'Visto': return <span className={`${styles.badge} ${styles.badgeResolved}`}>Visto</span>;
       default: return <span className={styles.badge}>{status}</span>;
     }
   };
@@ -191,9 +190,9 @@ function Forum() {
             }}
           >
             <option value="Todos">Todos</option>
-            <option value="Pendente">Pendente</option>
-            <option value="Em Análise">Em Análise</option>
-            <option value="Resolvido">Resolvido</option>
+            <option value="Não Visto">Não Visto</option>
+            <option value="Não Visto">Não Visto</option>
+            <option value="Visto">Visto</option>
           </select>
         </div>
 

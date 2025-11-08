@@ -1,0 +1,222 @@
+/* src/pages/OnboardingPage/OnboardingPage.module.css */
+
+.onboardingPage {
+    background-color: #f7f9fc;
+    min-height: calc(100vh - 70px);
+}
+
+/* --- 1. Seção Superior: Banner de Busca --- */
+.searchBanner {
+    background-color: #002D56; /* Azul Marinho Escuro */
+    color: #fff;
+    padding: 80px 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 0 0 15px 15px; /* Bordas arredondadas na parte inferior */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.bannerContent {
+    max-width: 700px;
+    text-align: center;
+}
+
+.bannerTitle {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    line-height: 1.2;
+}
+
+.bannerSubtitle {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+}
+
+/* Formulário de Busca */
+.searchForm {
+    width: 100%;
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+.searchInputContainer {
+    display: flex;
+    background-color: #fff;
+    border-radius: 50px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    align-items: center;
+}
+
+.searchIcon {
+    width: 24px;
+    height: 24px;
+    fill: #999;
+    margin-left: 20px;
+    flex-shrink: 0;
+}
+
+.searchInput {
+    flex-grow: 1;
+    padding: 15px 10px;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    color: #333;
+}
+
+.searchInput::placeholder {
+    color: #999;
+}
+
+.searchButton {
+    background-color: #2F80ED; /* Azul de destaque */
+    color: #fff;
+    padding: 15px 30px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    flex-shrink: 0;
+}
+
+.searchButton:hover {
+    background-color: #1a6ac9;
+}
+
+/* --- 2. Seção de Resultados da Busca --- */
+.resultsSection {
+    padding: 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.resultsTitle {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #002D56;
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.initialMessage {
+    text-align: center;
+    color: #666;
+    padding: 40px;
+    font-style: italic;
+}
+
+/* Card de Resultado (Onde estava o problema) */
+.resultCard {
+    background: linear-gradient(to bottom, 
+        #C5DCF7 0%,      /* Cor mais clara no topo (0%) */
+        #94C1F3 100%     /* Cor ligeiramente mais escura na base (100%) */
+    );
+    padding: 30px;
+    border-radius: 12px;
+    /* A linha vertical azul escura */
+    border-left: 8px solid #002D56; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease;
+}
+
+.resultCard:hover {
+    transform: translateY(-2px); /* Efeito de elevação suave */
+}
+
+.resultHeader {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.resultIcon {
+    width: 30px;
+    height: 30px;
+    margin-right: 15px;
+    /* Filtrar o ícone para que fique em cor escura se a imagem for branca */
+    filter: drop-shadow(0 0 0.5px rgba(0,0,0,0.5)); 
+}
+
+.resultQuestion {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #002D56;
+    margin: 0;
+}
+
+.resultAnswer {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Estilo para a Citação da Fonte */
+.resultSourceContainer {
+    border-top: 1px solid rgba(0, 45, 86, 0.1); /* Linha fina de separação */
+    padding-top: 15px;
+}
+
+.resultSource {
+    font-size: 0.95rem;
+    color: #555;
+    font-style: italic;
+    margin: 0;
+}
+
+/* --- Responsividade Básica --- */
+@media (max-width: 768px) {
+    .searchBanner {
+        padding: 50px 20px;
+    }
+
+    .bannerTitle {
+        font-size: 2rem;
+    }
+
+    .bannerSubtitle {
+        font-size: 1rem;
+    }
+
+    .resultsSection {
+        padding: 20px;
+    }
+
+    .searchInputContainer {
+        flex-direction: column;
+        border-radius: 12px;
+        box-shadow: none;
+        background-color: transparent;
+    }
+    
+    .searchIcon {
+        display: none; 
+    }
+
+    .searchInput {
+        border-radius: 12px;
+        border: 1px solid #ccc;
+        margin-bottom: 10px;
+        padding: 12px;
+        width: 100%;
+    }
+
+    .searchButton {
+        width: 100%;
+        border-radius: 12px;
+        padding: 12px;
+    }
+
+    .resultQuestion {
+        font-size: 1.2rem;
+    }
+
+    .resultAnswer {
+        font-size: 1rem;
+    }
+}

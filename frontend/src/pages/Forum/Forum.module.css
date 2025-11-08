@@ -217,7 +217,7 @@
 }
 
 /* Estilo para os Badges de Satatus */
-.badgePending { background-color: #ffc100; color: #333; } /* Amarelo/Laranja para Pendente */
+.badgePending { background-color: #dc3545;  } /* Amarelo/Laranja para Pendente */
 .badgeInProgress { background-color: #007bff; } /* Azul para Em Análise */
 .badgeResolved { background-color: #28a745; } /* Verde para Resolvido */
 
