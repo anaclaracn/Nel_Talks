@@ -1,0 +1,58 @@
+Nel_Talks/
+├── architecture_docs/               # Documentação da arquitetura, diagramas, etc.
+│   └── (seus diagramas, documentos sobre a API, etc.)
+│
+├── frontend/                        # Seu projeto React atual
+│   ├── node_modules/
+│   ├── public/
+│   ├── src/                         # Componentes React, CSS, Assets
+│   │   ├── assets/
+│   │   ├── components/
+│   │   ├── layouts/
+│   │   ├── pages/
+│   │   │   ├── ChatPage/
+│   │   │   ├── ForumPage/
+│   │   │   └── OnboardingPage/
+│   │   ├── services/                # Funções para chamar as APIs do backend
+│   │   ├── App.jsx
+│   │   └── main.jsx
+│   ├── .gitignore
+│   ├── eslint.config.js
+│   ├── index.html
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── README.md
+│   └── vite.config.js
+│
+├── api_gateway/                     # Onde estará o código do seu API Gateway (ex: em Flask, FastAPI, Node.js)
+│   ├── src/                         # Lógica do Gateway, roteamento para os agentes
+│   │   ├── routes/
+│   │   ├── services/                # Funções para chamar os agentes Gemini e RAG
+│   │   └── app.py (ou server.js)
+│   ├── requirements.txt (ou package.json)
+│   ├── Dockerfile                   # Dockerfile para o API Gateway
+│   └── README.md
+│
+├── agent_forum_ia/                  # Microserviço do Agente ForumIA (para classificação/chat)
+│   ├── src/
+│   │   ├── models/                  # Se tiver modelos de classificação locais
+│   │   ├── services/                # Lógica de interação com Gemini, chamadas ao RAG
+│   │   └── main.py (ou index.js)
+│   ├── requirements.txt (ou package.json)
+│   ├── Dockerfile                   # Dockerfile para o Agente ForumIA
+│   └── README.md
+│
+├── agent_docs_ia_rag/               # Microserviço do Agente DocsIA (RAG - embeddings, query, LLM)
+│   ├── src/
+│   │   ├── data/                    # Documentos brutos, índices (opcional)
+│   │   ├── models/                  # Modelos de embedding ou LLM configs
+│   │   ├── vector_store/            # Configurações/conexão com o Vector DB (ex: ChromaDB, Pinecone)
+│   │   ├── services/                # Lógica LangChain (chains, retrievers, etc.)
+│   │   └── main.py (ou index.js)
+│   ├── requirements.txt (ou package.json)
+│   ├── Dockerfile                   # Dockerfile para o Agente DocsIA
+│   └── README.md
+│
+├── docker-compose.yml               # Arquivo para orquestrar todos os contêineres Docker
+├── .gitignore                       # .gitignore global para o projeto (ignorar node_modules, .env em todas as pastas)
+└── README.md                        # README.md principal do projeto
