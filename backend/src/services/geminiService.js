@@ -54,7 +54,42 @@ async function classifyPost(texto) {
     }
   }
 }
+/**
+ * Determina se o texto deve ser destinado ao "time" ou à "diretoria"
+ */
+async function analyzeDestination(texto) {
+  try {
+    const payload = {
+      contents: [{
+        parts: [{
+          text: `Analise o seguinte texto e responda APENAS com "time" ou "diretoria": "${texto}"
+            Regras:
+            - Se o texto for algo operacional, de execução, ou sobre atividades do dia a dia → "time".
+            - Se for uma sugestão estratégica, problema estrutural ou decisão de gestão → "diretoria".`
+        }]
+      }]
+    };
 
+    const response = await axios.post(API_URL, payload, {
+      headers: { 'Content-Type': 'application/json' },
+    });
+
+    const destination = response.data?.candidates?.[0]?.content?.parts?.[0]?.text?.trim();
+    if (!destination) throw new Error('Nenhum destino retornado pela API.');
+
+    return destination.toLowerCase();
+  } catch (error) {
+    const apiError = error.response?.data?.error;
+    if (apiError) {
+      console.error('Erro detalhado da API Gemini:', JSON.stringify(apiError, null, 2));
+      throw new Error(apiError.message);
+    } else {
+      console.error('Erro ao chamar API do Gemini:', error.message);
+      throw error;
+    }
+  }
+}
 module.exports = {
   classifyPost,
+  analyzeDestination
 };
