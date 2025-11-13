@@ -3,7 +3,6 @@ import express from 'express';
 import { callAPI } from '../utils/fetchHelper.js';
 import dotenv from 'dotenv';
 dotenv.config();
-
 const router = express.Router();
 
 // Fluxo: Gateway → Gemini → Nélia (decide se vai pro RAG)
@@ -24,8 +23,8 @@ router.post('/process', async (req, res) => {
     return res.json({ origin: 'Gemini', response: geminiResponse.text });
 
   } catch (error) {
-    console.error('Erro ao processar rota Gemini:', error);
-    res.status(500).json({ error: 'Falha ao processar requisição no Gateway Gemini' });
+        console.error('Erro ao processar rota Gemini:', error);
+        res.status(500).json({ error: 'Falha ao processar requisição no Gateway Gemini' });
   }
 });
 

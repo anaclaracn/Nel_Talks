@@ -8,13 +8,12 @@ const router = express.Router();
 
 router.post('/', async (req, res) => {
   try {
-    const { message } = req.body;
-    const response = await callAPI(`${process.env.NELIA_SERVICE_URL}/analyze`, { message });
-    res.json(response);
+        const { message } = req.body;
+        const response = await callAPI(`${process.env.NELIA_SERVICE_URL}/analyze`, { message });
+        res.json(response);
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'Erro ao comunicar com Nélia' });
+        console.error(err);
+        res.status(500).json({ error: 'Erro ao comunicar com Nélia' });
   }
 });
-
 export default router;

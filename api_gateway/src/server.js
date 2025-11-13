@@ -39,14 +39,14 @@ async function proxyRequest(req, res, targetBaseUrl) {
 
     res.status(response.status).json(response.data);
   } catch (error) {
-    const statusCode = error.response ? error.response.status : 503;
-    const message = error.response?.data?.detail || error.response?.data?.error || 'Erro ao processar a requisição no destino.';
-    console.error(`[Gateway Error] ${targetBaseUrl}:`, error.message);
+        const statusCode = error.response ? error.response.status : 503;
+        const message = error.response?.data?.detail || error.response?.data?.error || 'Erro ao processar a requisição no destino.';
+        console.error(`[Gateway Error] ${targetBaseUrl}:`, error.message);
 
-    res.status(statusCode).json({
-      error: message,
-      service: targetBaseUrl,
-      status: statusCode,
+        res.status(statusCode).json({
+        error: message,
+        service: targetBaseUrl,
+        status: statusCode,
     });
   }
 }
@@ -64,7 +64,7 @@ app.all('/rag/*', (req, res) => proxyRequest(req, res, RAG_SERVICE_URL));
 
 // --- Healthcheck ---
 app.get('/health', (req, res) => {
-  res.status(200).json({ status: 'ok', service: 'API Gateway' });
+    res.status(200).json({ status: 'ok', service: 'API Gateway' });
 });
 
 // --- Catch-all ---
