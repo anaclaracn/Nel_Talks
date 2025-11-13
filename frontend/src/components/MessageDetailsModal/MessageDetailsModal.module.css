@@ -1,0 +1,163 @@
+/* src/components/MessageDetailsModal/MessageDetailsModal.module.css */
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6); /* Fundo semi-transparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Garante que fique acima de tudo */
+}
+
+.modalContent {
+    background: #fff;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 650px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    max-height: 90vh; /* Limita a altura do modal */
+    overflow: hidden;
+}
+
+/* --- Cabeçalho --- */
+.modalHeader {
+    padding: 20px 25px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modalTitle {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #002D56; /* Azul Marinho */
+    margin: 0;
+}
+
+.closeButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #333;
+    transition: color 0.2s;
+}
+
+.closeButton:hover {
+    color: #dc3545;
+}
+
+/* --- Corpo do Modal (Conteúdo) --- */
+.modalBody {
+    padding: 25px;
+    overflow-y: auto; /* Permite scroll no conteúdo se for muito longo */
+}
+
+.messageInfo {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed #ccc;
+}
+
+.classificationTag {
+    font-size: 1rem;
+    color: #002D56;
+}
+
+.senderInfo {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 5px;
+}
+
+.sectionTitle {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #0A284D;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+/* Caixa para a Mensagem do Usuário */
+.messageBox {
+    background-color: #DCECFF; /* Fundo cinza claro */
+    border: 1px solid #e0e0e0;
+    padding: 15px;
+    border-radius: 8px;
+    white-space: pre-wrap; /* Preserva quebras de linha e espaços */
+    color: #0A2445;
+    font-size: 1rem;
+}
+
+/* Caixa para a Resposta Sugerida (RAG) */
+.responseBox {
+    /* Cor de fundo ligeiramente azul, similar ao design do resultado da busca */
+    background-color: #e6f0ff; 
+    border: 1px solid #2F80ED; /* Borda azul clara */
+    padding: 15px;
+    border-radius: 8px;
+    color: #002D56;
+    font-size: 1rem;
+    line-height: 1.6;
+    font-weight: 500;
+    margin-bottom: 5px; /* Espaço para a fonte */
+}
+
+.sourceText {
+    font-size: 0.85rem;
+    color: #666;
+    font-style: italic;
+    margin-left: 5px;
+}
+
+.noRagNote {
+    color: #888;
+    font-style: italic;
+    padding: 15px;
+    border: 1px solid #f0f0f0;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+/* --- Footer e Botões de Ação --- */
+.modalFooter {
+    padding: 20px 25px;
+    border-top: 1px solid #eee;
+    display: flex;
+    justify-content: flex-end; /* Botões à direita */
+    gap: 15px;
+}
+
+.resolveButton, .shareButton {
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, opacity 0.2s;
+}
+
+.resolveButton {
+    background-color: #28a745; /* Verde para Ação Principal (Resolver) */
+    color: #fff;
+    border: none;
+}
+
+.resolveButton:hover {
+    background-color: #1e7e34;
+}
+
+.shareButton {
+    background-color: #f7f9fc; /* Branco/Cinza claro */
+    color: #002D56;
+    border: 1px solid #ccc;
+}
+
+.shareButton:hover {
+    background-color: #e9ecef;
+}
