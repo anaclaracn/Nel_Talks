@@ -15,4 +15,5 @@ ENV PORT=8000
 EXPOSE 8000
 
 # Comando para rodar a aplicação
-CMD ["node", "src/server.js"]
+# CMD ["node", "src/server.js"] troquei por para padronização
+CMD ["node", "index.js"] 

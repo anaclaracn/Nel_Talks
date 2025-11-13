@@ -110,21 +110,21 @@ describe('API Gateway Routing', () => {
     test('should return 503 if target NELIA Service is unavailable', async () => {
         axios.mockRejectedValueOnce(new Error('Network Error: NELIA is down'));
 
-        const chatPayload = { text: 'Testando serviço indisponível' };
-        const res = await request(app)
+            const chatPayload = { text: 'Testando serviço indisponível' };
+            const res = await request(app)
             .post('/chat/message')
             .send(chatPayload);
 
-        expect(res.statusCode).toEqual(503);
-        expect(res.body).toHaveProperty('error');
-        expect(res.body.error).toContain('Serviço de destino indisponível.');
-        expect(axios).toHaveBeenCalledTimes(1);
+            expect(res.statusCode).toEqual(503);
+            expect(res.body).toHaveProperty('error');
+            expect(res.body.error).toContain('Serviço de destino indisponível.');
+            expect(axios).toHaveBeenCalledTimes(1);
     });
 
     // --- Teste 6: Lidar com Rota Não Encontrada no Gateway ---
     test('should return 404 for undefined routes', async () => {
-        const res = await request(app).get('/non-existent-route');
-        expect(res.statusCode).toEqual(404);
-        expect(res.body).toEqual({ error: 'Endpoint não encontrado no API Gateway' });
+            const res = await request(app).get('/non-existent-route');
+            expect(res.statusCode).toEqual(404);
+            expect(res.body).toEqual({ error: 'Endpoint não encontrado no API Gateway' });
     });
 });
