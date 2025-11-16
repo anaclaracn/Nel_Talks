@@ -1,0 +1,20 @@
+services:
+  reader_agent:
+    build: ./reader_agent
+    container_name: reader_agent
+    ports:
+      - "8001:8001"
+    volumes:
+      - ./reader_agent/data:/app/data:ro
+    environment:
+      - PYTHONUNBUFFERED=1
+
+  front_agent:
+    build: ./front_agent
+    container_name: front_agent
+    ports:
+      - "8000:8000"
+    depends_on:
+      - reader_agent
+    environment:
+      - PYTHONUNBUFFERED=1
