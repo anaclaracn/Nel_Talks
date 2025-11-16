@@ -14,12 +14,18 @@ class QueryOut(BaseModel):
     answer: str
     sources: list
 
+# O método OPTIONS é usado pelo navegador para verificar permissões de CORS
+@app.options("/onboarding/query")
+@app.options("/query") # Adicione se houver rotas diretas para /query
+def options_handler():
+    return {"status": "ok"} # Retorna um status de sucesso para o preflight
+
 @app.get("/health")
 def health():
     return {"status": "ok", "reader_url": READER_URL}
 
 # front_agent/app.py (apenas a função query ligeiramente modificada)
-@app.post("/query", response_model=QueryOut)
+@app.post("/onboarding/query", response_model=QueryOut)
 def query(q: QueryIn):
     payload = {"question": q.question.strip(), "top_k": 3}
     try:
