@@ -1,5 +1,5 @@
 // nelia_service_layer/src/controllers/neliaController.js
-import { classifyText } from '../services/forumAgentService.js';
+import { classifyAndSavePost } from '../services/forumAgentService.js';
 import { queryDocumentation } from '../services/docsAgentService.js';
 
 /**
@@ -18,7 +18,7 @@ export async function handleChatMessage(req, res) {
         console.log(`[NELIA] Recebida mensagem: "${message}"`);
 
         // 1. Chamar o Agente ForumIA (Node.js/Gemini) para classificar a mensagem
-        const { classificacao, destinadoPara, id: postId } = await classifyText(message);
+        const { classificacao, destinadoPara, id: postId } = await classifyAndSavePost(message);
         console.log(`[NELIA] Classificação do Agente ForumIA: ${classificacao}, Destino: ${destinadoPara}`);
 
         let responseToUser = {
