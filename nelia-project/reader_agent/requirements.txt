@@ -1,8 +1,0 @@
-fastapi
-uvicorn[standard]
-transformers>=4.30.0
-sentence-transformers
-torch
-numpy
-pydantic
-requests
