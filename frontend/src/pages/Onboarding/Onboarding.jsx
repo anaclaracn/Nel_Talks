@@ -30,12 +30,12 @@ function Onboarding() {
             // Requisição POST para o endpoint do Onboarding no Gateway
             // O Gateway roteia /onboarding/query para o Agente DocsIA (Mistral)
             const res = await axios.post(`${GATEWAY_URL}/onboarding/query`, {
-                question: question
+                query: question
             });
 
             // Resposta de sucesso (O Agente DocsIA deve retornar { answer: string, sources: array })
             setResponse({
-                question: question,
+                query: question,
                 answer: res.data.answer || "O Agente não pôde gerar uma resposta clara.",
                 sources: res.data.sources || [] // Array de fontes/citações
             });

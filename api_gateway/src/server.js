@@ -35,7 +35,7 @@ app.use(express.json()); // Habilita o parsing de JSON no corpo da requisição
 // Estas URLs são usadas para direcionar as requisições para os serviços internos.
 const FORUM_SERVICE_URL = process.env.FORUM_SERVICE_URL || 'http://forum_agent:3000';
 const NELIA_SERVICE_URL = process.env.NELIA_SERVICE_URL || 'http://nelia_service_layer:8001';
-const DOCS_SERVICE_URL = process.env.DOCS_SERVICE_URL || 'http://front_agent:8000';
+const DOCS_SERVICE_URL = process.env.DOCS_SERVICE_URL || 'http://front_agent:8005';
 
 
 // --- Função de Proxy Genérica ---
@@ -98,6 +98,45 @@ app.all('/chat/*', (req, res) => proxyRequest(req, res, NELIA_SERVICE_URL));
 // Rotas para o Agente DocsIA (Python/Mistral/RAG)
 // Exemplos: POST /onboarding/upload-doc, POST /rag/query
 // Estas rotas podem ser para funcionalidades diretas de RAG (ex: upload de documentos ou consultas RAG específicas).
+app.post('/onboarding/query', async (req, res) => {
+    // O frontend envia a pergunta no corpo da requisição POST (req.body)
+    const { query } = req.body; 
+
+    if (!query) {
+        return res.status(400).json({ error: 'O campo "query" é obrigatório para a busca.' });
+    }
+
+    const docsServiceUrl = process.env.DOCS_SERVICE_URL; 
+
+    try {
+    
+        // CONVERSÃO: Enviar como GET e passar a 'query' como parâmetro de URL (/ask?query=...)
+        const targetUrl = `${docsServiceUrl}/ask?query=${encodeURIComponent(query)}`;
+        console.log(`[Gateway] Transformando POST /onboarding/query -> GET ${targetUrl}`);
+
+        // Faz a requisição usando axios.get, ignorando o corpo POST original
+        const response = await axios.get(targetUrl);
+
+        // Retorna a resposta do Agente DocsIA (RAG) para o cliente
+        res.status(response.status).json(response.data);
+
+    } catch (error) {
+        // Trata erros de rede ou 4xx/5xx vindos do Agente DocsIA
+        const statusCode = error.response ? error.response.status : 503;
+        const message = error.response?.data?.detail 
+            || error.response?.data?.error 
+            || `Erro ao processar a requisição no Agente DocsIA (RAG).`;
+        
+        console.error(`[Gateway Error] Rota /onboarding/query para DocsIA:`, error.message);
+
+        res.status(statusCode).json({
+            error: message,
+            service: docsServiceUrl,
+            status: statusCode,
+        });
+    }
+});
+
 app.all('/onboarding/*', (req, res) => proxyRequest(req, res, DOCS_SERVICE_URL));
 app.all('/rag/*', (req, res) => proxyRequest(req, res, DOCS_SERVICE_URL));
 
