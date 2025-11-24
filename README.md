@@ -59,6 +59,11 @@ O projeto segue uma arquitetura distribuída composta por:
 <img width="587" height="738" alt="Arquitetura_sistemas_distribuidos drawio" src="https://github.com/user-attachments/assets/d1e63aec-c8ef-4257-9f5c-45ad922a0cf3" />
 
 ### Modelagem de ameaças
+![Diagrama_modelagem_final_da_arquitetura](https://github.com/user-attachments/assets/289c8a0a-6e22-4908-b350-8ce3960969ed)
+
 <img width="1452" height="324" alt="image" src="https://github.com/user-attachments/assets/faf305b7-d0f8-44d5-95a9-89db73288f3f" />
+
+
+
 
 
