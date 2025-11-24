@@ -132,14 +132,6 @@ function Onboarding() {
                                 </p>
                             </div>
                         )}
-                        
-                        {/* Feedback (Opcional) */}
-                        <div className={styles.feedbackContainer}>
-                            <span className={styles.feedbackLabel}>Esta resposta foi útil?</span>
-                            <button className={styles.feedbackButton}>👍 Sim</button>
-                            <button className={styles.feedbackButton}>👎 Não</button>
-                        </div>
-
                     </div>
                 )}
                 

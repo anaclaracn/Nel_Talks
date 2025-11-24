@@ -69,7 +69,7 @@ function Chat() {
             // NELIA retorna: { message: string, classification: string, origin: string, sources?: [] }
             const { message, classification, origin, sources } = response.data;
 
-            let responseText = `🤖 [${origin}] Classificação: ${classification}. ${message}`;
+            let responseText = `Classificação: ${classification}. ${message}`;
 
             if (sources && sources.length > 0) {
                 const sourceNames = sources.map(s => s.source || s).join(', ');
