@@ -44,7 +44,7 @@ export async function handleChatMessage(req, res) {
             console.log(`[NELIA] Mensagem classificada como "${classificacao}", registrando e agradecendo.`);
             // Para "reclamação" e "sugestão", podemos ter uma resposta padrão.
             // O post já foi criado no Agente ForumIA na chamada acima.
-            responseToUser.message = `Obrigado por sua ${classificacao}. Ela foi registrada com sucesso (ID: ${postId}) e será encaminhada à ${destinadoPara}.`;
+            responseToUser.message = `Obrigado por sua ${classificacao}. Ela foi registrada com sucesso e será encaminhada à ${destinadoPara}.`;
             responseToUser.origin = 'ForumIA'; // A resposta final ainda se baseia na ação do ForumIA
         } else {
             console.log(`[NELIA] Classificação desconhecida: "${classificacao}".`);

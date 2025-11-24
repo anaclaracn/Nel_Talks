@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-irregular-whitespace */
 // src/pages/Chat/Chat.jsx
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -69,8 +71,9 @@ function Chat() {
             // NELIA retorna: { message: string, classification: string, origin: string, sources?: [] }
             const { message, classification, origin, sources } = response.data;
 
-            let responseText = `🤖 [${origin}] Classificação: ${classification}. ${message}`;
+            let responseText = `Classificação: ${classification}. ${message}`;
 
+// eslint-disable-next-line no-irregular-whitespace
             if (sources && sources.length > 0) {
                 const sourceNames = sources.map(s => s.source || s).join(', ');
                 responseText += `\n\n(Fontes Consultadas: ${sourceNames})`;
@@ -147,7 +150,7 @@ function Chat() {
                     {isSending && (
                         <div className={`${styles.messageBubble} ${styles.agente} ${styles.typing}`}>
                             <img src={robotIcon} alt="Agente" className={styles.avatar} />
-                            <p className={styles.messageText}>Agente Gemini digitando...</p>
+                            <p className={styles.messageText}>Agente NelTalks digitando...</p>
                         </div>
                     )}
                 </div>

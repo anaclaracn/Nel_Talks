@@ -1,19 +1,23 @@
 const mysql = require('mysql2/promise');
+const { URL } = require('url');
 
 let connection;
 
 async function initDB() {
   if (!connection) {
+    // Pega a URL do Railway
+    const dbUrl = new URL(process.env.MYSQL_URL);
+
     connection = await mysql.createConnection({
-      host: process.env.DB_HOST,
-      user: process.env.DB_USER,
-      password: process.env.DB_PASSWORD,
-      database: process.env.DB_NAME,
+      host: dbUrl.hostname,
+      user: dbUrl.username,
+      password: dbUrl.password,
+      database: dbUrl.pathname.replace(/^\//, ''), // remove a barra inicial
+      port: dbUrl.port
     });
 
     console.log('✅ Conectado ao MySQL!');
   }
-
   return connection;
 }
 
