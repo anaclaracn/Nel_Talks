@@ -34,10 +34,14 @@ function Onboarding() {
             });
 
             // Resposta de sucesso (O Agente DocsIA deve retornar { answer: string, sources: array })
+            const answerContent = res.data.answer && res.data.answer.content 
+                                    ? res.data.answer.content 
+                                    : "O Agente não pôde gerar uma resposta clara.";
+
             setResponse({
-                query: question,
-                answer: res.data.answer || "O Agente não pôde gerar uma resposta clara.",
-                sources: res.data.sources || [] // Array de fontes/citações
+                question: question,
+                answer: answerContent, // Use a variável corrigida aqui
+                sources: res.data.sources || [] // Pode ser que o RAG não esteja retornando sources ainda.
             });
 
         } catch (err) {
