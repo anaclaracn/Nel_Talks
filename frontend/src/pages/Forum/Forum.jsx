@@ -173,6 +173,7 @@ function Forum() {
         else if (key === 'reclamação') className += ` ${styles.badgeComplaint}`;
         else if (key === 'dúvida') className += ` ${styles.badgeDoubt}`;
         else if (key === 'feedback') className += ` ${styles.badgeFeedback}`;
+        else if (key === 'sugestão') className += ` ${styles.badgeSugestion}`;
         return <span className={className}>{classification}</span>;
     };
 

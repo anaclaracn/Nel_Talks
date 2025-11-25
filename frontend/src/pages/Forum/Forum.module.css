@@ -200,6 +200,7 @@
 .badgeFeedback { background-color: #ffc107; color: #333; } /* Amarelo (com texto escuro) */
 .badgeManagement { background-color: #6c757d; } /* Cinza (Diretoria) */
 .badgeTeam { background-color: #17a2b8; } /* Ciano (Time) */
+.badgeSugestion { background-color: #17b86d; } /* Ciano */
 
 .detailButton {
     background-color: #002D56; /* Azul Marinho */

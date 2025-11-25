@@ -18,7 +18,6 @@ yarn-error.log*
 coverage/
 
 # Variáveis de ambiente 
-.env
 .env.*.local
 .flaskenv
 

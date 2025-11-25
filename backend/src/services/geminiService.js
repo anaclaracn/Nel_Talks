@@ -20,7 +20,7 @@ async function classifyPost(texto) {
     const payload = {
       contents: [{
         parts: [{
-          text: `Classifique o seguinte texto APENAS como "reclamação", "dúvida" ou "sugestão": ${texto}. Ao responder favor não colocar o ID do usuário na resposta, retorne de forma elegante, sem alucinações`
+          text: `Classifique o seguinte texto APENAS como "reclamação", "dúvida", "sugestão" ou "feedback": ${texto}. Ao responder favor não colocar o ID do usuário na resposta, retorne de forma elegante, sem alucinações`
         }]
       }]
     };
