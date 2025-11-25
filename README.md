@@ -1,14 +1,36 @@
 # Nel_Talks - Sistema de Suporte e Onboarding Inteligente
 
-### Relevância do Problema 
+## Descrição do Projeto
 
-Entrar em um núcleo de estudos, como o NEL (Estudo em Laticíneos), pode ser desafiador para novos integrantes. Muitos enfrentam dificuldades em comunicar dúvidas, sugestões ou reclamações para a diretoria ou equipe, seja por vergonha ou falta de intimidade. Além disso, os novos membros frequentemente não possuem informações centralizadas sobre processos internos, regras do núcleo, apresentações e rotinas, tornando o onboarding confuso e ineficiente.  
+O NEL_Talks é um sistema distribuído criado para melhorar a comunicação interna e o onboarding de novos membros do Núcleo de Estudos em Laticínios (NEL).
+O projeto resolve dois problemas reais:
 
-Nosso projeto propõe uma solução tecnológica que atende essas demandas: um **agente inteligente integrado a um fórum e um sistema de onboarding**, que permite comunicação anônima e acesso facilitado a informações importantes.  
+### 1. Comunicação difícil dentro do núcleo
+   #### Novos membros têm dificuldade em:
+   * reportar dúvidas, enviar sugestões, fazer reclamações. Isso gera silêncio organizacional, problemas não reportados e baixo engajamento.
 
+### 2. Falta de onboarding estruturado
+
+   * Regras, rotinas, apresentações e materiais internos não estão centralizados, causando insegurança e confusão nos primeiros meses dos novos integrantes.
+     
+### O projeto aplica conceitos de:
+
+* Arquitetura Distribuída
+* Microsserviços
+* Orquestração inteligente de agentes
+* RAG (Retrieval-Augmented Generation)
+* Segurança e modelagem de ameaças
+* Integração entre serviços Node.js e Python
 ---
 
-### Dificuldades encontradas e nossa proporta 
+## Objetivo do Sistema
+
+O NEL Talks centraliza dúvidas, postagens e onboarding dos usuários, distribuindo requisições para diferentes agentes especializados:
+
+* Agente Chat (NÉLIA + LLM) → Responde perguntas através do fluxo de classificação + geração + busca em documentos.
+* Agente FórumIA → Gerenciamento de posts, status e discussões.
+* Agente DocsIA / OnboardingIA (Python + RAG) → Responde perguntas sobre documentos e realiza recuperação semântica baseada em embeddings.
+Toda comunicação passa exclusivamente pelo API Gateway, garantindo segurança, unificação e controle.
 
 1. **Dificuldade de comunicação:**  
    - Novos membros têm receio de se comunicar diretamente com a diretoria.  
@@ -25,35 +47,116 @@ Nosso projeto propõe uma solução tecnológica que atende essas demandas: um *
    - Integração com um sistema de **onboarding inteligente (Rag)**, que utiliza embeddings de documentos internos para responder dúvidas automaticamente.  
    - Posts classificados como dúvidas já são enviados automaticamente para o Rag, que retorna respostas diretamente ao usuário.
 
----
 
 Nosso sistema promove um ambiente mais seguro, acessível e eficiente para novos membros, permitindo que suas questões sejam atendidas de forma rápida e organizada, ao mesmo tempo que centraliza e automatiza o onboarding do núcleo.
 
 ---
+### Arquitetura do Sistema
+Arquitetura Inicial (Imagem enviada)
 
-## Funcionalidades Principais
+(representação de como o projeto começou; fluxo simples front → serviços)
+<img width="587" height="738" alt="Arquitetura_sistemas_distribuidos drawio" src="https://github.com/user-attachments/assets/d1e63aec-c8ef-4257-9f5c-45ad922a0cf3" />
 
-1. **Classificação automática de comentários**  
-   A primeira API de IA identifica o tipo de comentário publicado (reclamação, sugestão, dúvida, entre outros) por meio de técnicas de aprendizado de máquina e clusterização.
 
-2. **Assistente baseado em documentação**  
-   A segunda API responde perguntas dos usuários com base em uma base de conhecimento definida, garantindo que as respostas permaneçam dentro do escopo da documentação.
+### Arquitetura Final (Imagem enviada)
 
-3. **Arquitetura distribuída**  
-   O sistema é composto por um front-end para interação do usuário, um back-end responsável pela comunicação com as APIs e um banco de dados para armazenamento e gerenciamento de dados.
+(versão correta, com NÉLIA e Gateway atuando como camadas centrais)
+ ![Diagrama_modelagem_final_da_arquitetura (1)](https://github.com/user-attachments/assets/879a802a-9681-4619-bdff-4af037a05a80)
+
 
 ---
 
-## Arquitetura do Sistema
+## Componentes da Arquitetura
 
-O projeto segue uma arquitetura distribuída composta por:
+### 1. Frontend
 
-- **Front-end:** Interface do usuário, responsável pela interação com o fórum.  
-- **Back-end:** Camada de integração entre o front-end e as APIs de IA, realizando a autenticação, validação e controle de requisições.  
-- **APIs de Inteligência Artificial:**  
-  - **IA 1:** Classificação de comentários.  
-  - **IA 2:** Respostas baseadas em documentação.  
-- **Banco de Dados:** Armazenamento de usuários, comentários, classificações e logs.
+Interface usada pelo usuário.
+Envia todas as requisições exclusivamente para o API Gateway e exibe as respostas dos serviços internos (Chat/Nélia, FórumIA, RAG).
 
-### Diagrama de Arquitetura (conceitual)
-<img width="587" height="738" alt="Arquitetura_sistemas_distribuidos drawio" src="https://github.com/user-attachments/assets/d1e63aec-c8ef-4257-9f5c-45ad922a0cf3" />
+
+### 2. API Gateway
+
+Ponto único de entrada do sistema.
+Recebe requisições do frontend, aplica regras (filtro, logs, conversões) e encaminha para o microserviço apropriado.
+
+
+### 3. Nélia Service Layer
+
+Módulo intermediário que interpreta a intenção do usuário e coordena a comunicação entre os agentes internos (chat, documentos, fórum).
+Centraliza a lógica de orquestração.
+
+
+### 4.FórumIA 
+
+Microserviço responsável por gerenciamento de posts.
+Executa classificação automática, registra, atualiza e lista publicações, usando banco MySQL.
+
+
+### 5. DocsIA / RAG / Onboarding IA
+
+Microserviço Python voltado para informações internas.
+Gera embeddings, realiza busca semântica e produz respostas baseadas em documentos.
+
+---
+
+### Modelagem de ameaças
+<img width="1812" height="458" alt="Captura de tela 2025-11-25 165304" src="https://github.com/user-attachments/assets/4b96feb1-b240-41ab-aa5f-69d347caaa5f" />
+
+---
+
+## Como Rodar o Projeto
+
+### **1. Clone o repositório**
+
+```bash
+git clone https://github.com/seu-usuario/seu-repo.git
+cd seu-repo
+```
+
+### **2. Crie o ambiente virtual**
+
+```bash
+python -m venv venv
+```
+
+### **3. Ative o ambiente virtual**
+
+* **Windows**
+
+```bash
+venv\Scripts\activate
+```
+
+* **Linux/Mac**
+
+```bash
+source venv/bin/activate
+```
+
+### **4. Instale as dependências**
+
+```bash
+pip install -r requirements.txt
+```
+
+### **5. Configure as variáveis de ambiente**
+
+1. Crie um arquivo `.env` na raiz do projeto.
+2. Adicione a sua chave da API do Google:
+
+```
+GEMINI_API_KEY=your_api_key_here
+```
+
+### **6. Execute o projeto**
+
+```bash
+python main.py
+```
+
+
+
+
+
+
+

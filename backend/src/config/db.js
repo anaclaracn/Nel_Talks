@@ -7,6 +7,7 @@ async function initDB() {
   if (!connection) {
     // Pega a URL do Railway
     const dbUrl = new URL(process.env.MYSQL_URL);
+    //console.log('Conectando ao MySQL em:', dbUrl);
 
     connection = await mysql.createConnection({
       host: dbUrl.hostname,

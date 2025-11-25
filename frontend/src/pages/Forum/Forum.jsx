@@ -95,15 +95,7 @@ function Forum() {
 
     // Função para abrir o modal de detalhes da mensagem
     const handleViewDetails = (message) => {
-        const messageCopy = { ...message };
-
-        // Simulação da geração de resposta RAG no frontend (isso virá do backend!)
-        if (messageCopy.classification === 'Dúvida' && !messageCopy.suggestedAnswer) {
-            // No backend: Aqui o NELIA chamaria o RAG e anexaria a resposta.
-            messageCopy.suggestedAnswer = "O procedimento para solicitação de verba está detalhado no Artigo 5 do Regulamento Financeiro, exigindo submissão com 15 dias de antecedência.";
-            messageCopy.source = "Regulamento Financeiro - Art. 5";
-        }
-        setSelectedMessage(messageCopy);
+        setSelectedMessage(message);
         setIsModalOpen(true);
     };
 
