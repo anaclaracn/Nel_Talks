@@ -102,6 +102,57 @@ Gera embeddings, realiza busca semântica e produz respostas baseadas em documen
 ### Modelagem de ameaças
 <img width="1812" height="458" alt="Captura de tela 2025-11-25 165304" src="https://github.com/user-attachments/assets/4b96feb1-b240-41ab-aa5f-69d347caaa5f" />
 
+---
+
+## Como Rodar o Projeto
+
+### **1. Clone o repositório**
+
+```bash
+git clone https://github.com/seu-usuario/seu-repo.git
+cd seu-repo
+```
+
+### **2. Crie o ambiente virtual**
+
+```bash
+python -m venv venv
+```
+
+### **3. Ative o ambiente virtual**
+
+* **Windows**
+
+```bash
+venv\Scripts\activate
+```
+
+* **Linux/Mac**
+
+```bash
+source venv/bin/activate
+```
+
+### **4. Instale as dependências**
+
+```bash
+pip install -r requirements.txt
+```
+
+### **5. Configure as variáveis de ambiente**
+
+1. Crie um arquivo `.env` na raiz do projeto.
+2. Adicione a sua chave da API do Google:
+
+```
+GEMINI_API_KEY=your_api_key_here
+```
+
+### **6. Execute o projeto**
+
+```bash
+python main.py
+```
 
 
 
