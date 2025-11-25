@@ -35,10 +35,16 @@ export async function handleChatMessage(req, res) {
             // Chamar o Agente DocsIA (Python/Mistral)
             const docsResponse = await queryDocumentation(message);
             
-            responseToUser.message = docsResponse.answer || 'Não encontrei informações suficientes na documentação para responder sua dúvida.';
-            responseToUser.origin = 'DocsIA';
-            // Você pode adicionar as fontes também se quiser expor ao front
-            responseToUser.sources = docsResponse.sources;
+            const rawAnswer = docsResponse.answer;
+            const answerText = rawAnswer && rawAnswer.content
+                ? rawAnswer.content // Acessa o campo 'content' do objeto aninhado
+                : rawAnswer;        // Fallback: Se não for um objeto aninhado, usa a resposta bruta
+            // -----------------------------
+            
+            responseToUser.message = answerText || 'Não encontrei informações suficientes na documentação para responder sua dúvida.';
+            responseToUser.origin = 'DocsIA';
+            // Você pode adicionar as fontes também se quiser expor ao front
+            responseToUser.sources = docsResponse.sources;
 
         } else if (classificacao.toLowerCase() === 'reclamação' || classificacao.toLowerCase() === 'sugestão') {
             console.log(`[NELIA] Mensagem classificada como "${classificacao}", registrando e agradecendo.`);
