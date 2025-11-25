@@ -12,15 +12,16 @@ O projeto resolve dois problemas reais:
 ### 2. Falta de onboarding estruturado
 
    * Regras, rotinas, apresentações e materiais internos não estão centralizados, causando insegurança e confusão nos primeiros meses dos novos integrantes.
----
+     
 ### O projeto aplica conceitos de:
 
-*Arquitetura Distribuída
-*Microsserviços
-*Orquestração inteligente de agentes
-*RAG (Retrieval-Augmented Generation)
-*Segurança e modelagem de ameaças
-*Integração entre serviços Node.js e Python
+* Arquitetura Distribuída
+* Microsserviços
+* Orquestração inteligente de agentes
+* RAG (Retrieval-Augmented Generation)
+* Segurança e modelagem de ameaças
+* Integração entre serviços Node.js e Python
+  
 ---
 
 ## Objetivo do Sistema
@@ -101,10 +102,4 @@ Gera embeddings, realiza busca semântica e produz respostas baseadas em documen
 
 ### Modelagem de ameaças
 <img width="1812" height="458" alt="Captura de tela 2025-11-25 165304" src="https://github.com/user-attachments/assets/4b96feb1-b240-41ab-aa5f-69d347caaa5f" />
-
-
-
-
-
-
 
