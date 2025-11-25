@@ -73,28 +73,24 @@ Arquitetura Inicial (Imagem enviada)
 Interface usada pelo usuário.
 Envia todas as requisições exclusivamente para o API Gateway e exibe as respostas dos serviços internos (Chat/Nélia, FórumIA, RAG).
 
----
 
 ### **2. API Gateway**
 
 Ponto único de entrada do sistema.
 Recebe requisições do frontend, aplica regras (filtro, logs, conversões) e encaminha para o microserviço apropriado.
 
----
 
 ### **3. Nélia Service Layer**
 
 Módulo intermediário que interpreta a intenção do usuário e coordena a comunicação entre os agentes internos (chat, documentos, fórum).
 Centraliza a lógica de orquestração.
 
----
 
-### **4. FórumIA**
+### ** 4. FórumIA **
 
 Microserviço responsável por gerenciamento de posts.
 Executa classificação automática, registra, atualiza e lista publicações, usando banco MySQL.
 
----
 
 ### **5. DocsIA / RAG / Onboarding IA**
 
