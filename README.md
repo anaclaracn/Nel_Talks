@@ -86,7 +86,7 @@ Módulo intermediário que interpreta a intenção do usuário e coordena a comu
 Centraliza a lógica de orquestração.
 
 
-### 4. FórumIA
+### 4.FórumIA 
 
 Microserviço responsável por gerenciamento de posts.
 Executa classificação automática, registra, atualiza e lista publicações, usando banco MySQL.
