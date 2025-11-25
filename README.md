@@ -63,95 +63,45 @@ Arquitetura Inicial (Imagem enviada)
 (versão correta, com NÉLIA e Gateway atuando como camadas centrais)
  ![Diagrama_modelagem_final_da_arquitetura (1)](https://github.com/user-attachments/assets/879a802a-9681-4619-bdff-4af037a05a80)
 
- ---
-
-## Componentes do Sistema
-### 1. Front-end
-
-**O front:**
-
-* Se comunica apenas com o API Gateway
-
-* Não acessa diretamente nenhum microserviço
-
-* Envia mensagens para /chat, /api/forum, /onboarding/...
-
-* Exibe respostas do Chat/NÉLIA, FórumIA e RAG
-
-### 2. API Gateway
-
-*api_gateway/src/server.js*
-
-Responsável por:
-
-* Ser o único ponto de entrada do sistema
-
-* Proxy de requisições para os microserviços corretos
-
-* Regras especiais:
-
-   * /onboarding/query → converte POST → GET /ask?query=...
-
-* Filtragem, logs e padronização
-
-
----
-### 3. NÉLIA Service Layer
-
-nelia_service_layer/
-
-Funções principais:
-
-* Classificar o conteúdo recebido
-
-* Orquestrar chamadas entre agentes
-
-* Preparar prompts / unificar respostas
-
-* Mediar Chat ↔ DocsIA ↔ FórumIA quando necessário
-
-**Rotas:**
-
-* POST /chat
-
-* POST /nelia
-
---- 
-
-### 4. Agente FórumIA
-
-backend/
-
-* Serviço Node.js com MySQL.
-
-**Funções:**
-
-* Criar post
-
-* Classificar post via LLM (Gemini)
-
-* Determinar destino (time/diretoria)
-
-* Atualizar status
-
-* Listar posts
 
 ---
 
-## 5. DocsIA / RAG / Onboarding IA
+# **Componentes da Arquitetura**
 
-Serviço Python responsável por:
+### **1. Frontend**
 
-* Geração de embeddings
+Interface usada pelo usuário.
+Envia todas as requisições exclusivamente para o API Gateway e exibe as respostas dos serviços internos (Chat/Nélia, FórumIA, RAG).
 
-* Busca semântica em base vetorial
+---
 
-* Respostas contextuais sobre documentos internos
+### **2. API Gateway**
 
-* Upload e ingestão de documentos (se habilitado)
+Ponto único de entrada do sistema.
+Recebe requisições do frontend, aplica regras (filtro, logs, conversões) e encaminha para o microserviço apropriado.
 
-  ---
+---
 
+### **3. Nélia Service Layer**
+
+Módulo intermediário que interpreta a intenção do usuário e coordena a comunicação entre os agentes internos (chat, documentos, fórum).
+Centraliza a lógica de orquestração.
+
+---
+
+### **4. FórumIA**
+
+Microserviço responsável por gerenciamento de posts.
+Executa classificação automática, registra, atualiza e lista publicações, usando banco MySQL.
+
+---
+
+### **5. DocsIA / RAG / Onboarding IA**
+
+Microserviço Python voltado para informações internas.
+Gera embeddings, realiza busca semântica e produz respostas baseadas em documentos.
+
+---
 
 ### Modelagem de ameaças
 <img width="1812" height="458" alt="Captura de tela 2025-11-25 165304" src="https://github.com/user-attachments/assets/4b96feb1-b240-41ab-aa5f-69d347caaa5f" />
