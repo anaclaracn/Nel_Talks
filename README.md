@@ -21,7 +21,6 @@ O projeto resolve dois problemas reais:
 * RAG (Retrieval-Augmented Generation)
 * Segurança e modelagem de ameaças
 * Integração entre serviços Node.js e Python
-  
 ---
 
 ## Objetivo do Sistema
@@ -67,33 +66,33 @@ Arquitetura Inicial (Imagem enviada)
 
 ---
 
-# **Componentes da Arquitetura**
+## Componentes da Arquitetura
 
-### **1. Frontend**
+### 1. Frontend
 
 Interface usada pelo usuário.
 Envia todas as requisições exclusivamente para o API Gateway e exibe as respostas dos serviços internos (Chat/Nélia, FórumIA, RAG).
 
 
-### **2. API Gateway**
+### 2. API Gateway
 
 Ponto único de entrada do sistema.
 Recebe requisições do frontend, aplica regras (filtro, logs, conversões) e encaminha para o microserviço apropriado.
 
 
-### **3. Nélia Service Layer**
+### 3. Nélia Service Layer
 
 Módulo intermediário que interpreta a intenção do usuário e coordena a comunicação entre os agentes internos (chat, documentos, fórum).
 Centraliza a lógica de orquestração.
 
 
-### ** 4. FórumIA **
+### 4. FórumIA
 
 Microserviço responsável por gerenciamento de posts.
 Executa classificação automática, registra, atualiza e lista publicações, usando banco MySQL.
 
 
-### **5. DocsIA / RAG / Onboarding IA**
+### 5. DocsIA / RAG / Onboarding IA
 
 Microserviço Python voltado para informações internas.
 Gera embeddings, realiza busca semântica e produz respostas baseadas em documentos.
@@ -102,4 +101,11 @@ Gera embeddings, realiza busca semântica e produz respostas baseadas em documen
 
 ### Modelagem de ameaças
 <img width="1812" height="458" alt="Captura de tela 2025-11-25 165304" src="https://github.com/user-attachments/assets/4b96feb1-b240-41ab-aa5f-69d347caaa5f" />
+
+
+
+
+
+
+
 
