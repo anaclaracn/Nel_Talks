@@ -106,53 +106,12 @@ Gera embeddings, realiza busca semântica e produz respostas baseadas em documen
 
 ## Como Rodar o Projeto
 
-### **1. Clone o repositório**
+O projeto requer que estejam instalados:
+Docker
+NodeJs
+Ollama (juntamente com os modelos mistral e nomic)
 
-```bash
-git clone https://github.com/seu-usuario/seu-repo.git
-cd seu-repo
-```
-
-### **2. Crie o ambiente virtual**
-
-```bash
-python -m venv venv
-```
-
-### **3. Ative o ambiente virtual**
-
-* **Windows**
-
-```bash
-venv\Scripts\activate
-```
-
-* **Linux/Mac**
-
-```bash
-source venv/bin/activate
-```
-
-### **4. Instale as dependências**
-
-```bash
-pip install -r requirements.txt
-```
-
-### **5. Configure as variáveis de ambiente**
-
-1. Crie um arquivo `.env` na raiz do projeto.
-2. Adicione a sua chave da API do Google:
-
-```
-GEMINI_API_KEY=your_api_key_here
-```
-
-### **6. Execute o projeto**
-
-```bash
-python main.py
-```
+Baixe o projeto e suba o container, depois use o npm para subir o Frontend, o Backend, API nelia, e a API Gateway.
 
 
 
