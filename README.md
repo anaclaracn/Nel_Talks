@@ -106,10 +106,7 @@ Gera embeddings, realiza busca semântica e produz respostas baseadas em documen
 
 ## Como Rodar o Projeto
 
-O projeto requer que estejam instalados:
-Docker
-NodeJs
-Ollama (juntamente com os modelos mistral e nomic)
+O projeto requer que estejam instalados o Docker, NodeJs e o Ollama (juntamente com os modelos mistral e nomic).
 
 Baixe o projeto e suba o container, depois use o npm para subir o Frontend, o Backend, API nelia, e a API Gateway.
 
